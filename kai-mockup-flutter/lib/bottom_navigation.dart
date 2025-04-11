@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:mockup_ki/components/Profil_page/account_page.dart';
 import 'package:mockup_ki/dashboard.dart';
 import 'package:mockup_ki/primary_colors.dart';
 import 'package:mockup_ki/train_page.dart';
@@ -23,9 +24,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     Center(
       child: Text("Promo"),
     ),
-    Center(
-      child: Text("Akun"),
-    ),
+    AccountPage(),
   ];
 
   @override
