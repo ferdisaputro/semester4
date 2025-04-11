@@ -6,8 +6,9 @@ class IconWithLabel extends StatelessWidget {
   final IconData icon;
   final Color? color1;
   final Color? color2;
+  final Widget? redirectPage;
 
-  const IconWithLabel(this.icon, this.label, {this.color1, this.color2, super.key});
+  const IconWithLabel(this.icon, this.label, {this.color1, this.color2, this.redirectPage, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,12 @@ class IconWithLabel extends StatelessWidget {
         spacing: 5,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              redirectPage != null ? Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => redirectPage!),
+              ) : null;
+            },
             constraints: BoxConstraints(
               maxWidth: 55,
             ),

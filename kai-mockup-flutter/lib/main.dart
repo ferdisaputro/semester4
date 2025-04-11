@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mockup_ki/bottom_navigation.dart';
+import 'package:mockup_ki/provider/navigation_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(Main());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NavigationProvider())
+      ],
+      child: Main(),
+    )
+  );
 }
 
 class Main extends StatefulWidget {

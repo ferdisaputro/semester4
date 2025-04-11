@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mockup_ki/components/icon_with_label.dart';
+import 'package:mockup_ki/components/services/icon_with_label.dart';
+import 'package:mockup_ki/components/services/service_page.dart';
 
 class BuildServiceIcons extends StatelessWidget {
   const BuildServiceIcons({super.key});
@@ -32,7 +33,7 @@ class BuildServiceIcons extends StatelessWidget {
           child: Wrap(
             alignment: WrapAlignment.spaceBetween,
             spacing: 15,
-            children: services.map((service) => IconWithLabel(service['icon'], service['label'], color1: service['color1'], color2: service['color2'] )).toList(),
+            children: services.map((service) => IconWithLabel(service['icon'], service['label'], color1: service['color1'], color2: service['color2'], redirectPage: ServicePage(service['label']))).toList(),
           ),
         ),
       ),

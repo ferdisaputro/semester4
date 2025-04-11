@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class SimplePage extends StatelessWidget {
   final String title;
 

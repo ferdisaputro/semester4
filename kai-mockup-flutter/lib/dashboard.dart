@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mockup_ki/components/aditional_services/additional_services.dart';
 import 'package:mockup_ki/components/banner/title_inside.dart';
-import 'package:mockup_ki/components/build_service_icons.dart';
-import 'package:mockup_ki/components/icon_with_label.dart';
+import 'package:mockup_ki/components/outline_button_redirect.dart';
+import 'package:mockup_ki/components/services/build_service_icons.dart';
+import 'package:mockup_ki/components/services/icon_with_label.dart';
 import 'package:mockup_ki/primary_colors.dart';
 
 class Dashboard extends StatelessWidget {
@@ -18,7 +20,7 @@ class Dashboard extends StatelessWidget {
           children: [
             _heroAndPaySection(),
             BuildServiceIcons(),
-            _buildAdditionalServices(),
+            AdditionalServices(),
             _buildTripPlannerCard(),
             _newestDiscountBanner(),
             SizedBox(height: 5),
@@ -230,7 +232,7 @@ class Dashboard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      _outlinedButton("Aktivasi KAIPay")
+                      OutlineButtonRedirect("Aktivasi KAIPay")
                     ],
                   ),
                   VerticalDivider(
@@ -341,32 +343,6 @@ class Dashboard extends StatelessWidget {
     );
   }
 
-  Widget _outlinedButton(String text) {
-    return SizedBox(
-      height: 30,
-      child: OutlinedButton(
-        onPressed: () {}, 
-        style: ElevatedButton.styleFrom(
-          side: BorderSide(
-            color: PrimaryColors.blue,
-            width: 1,
-          ), 
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap
-        ),
-        child: Text(
-          softWrap: false,
-          style: TextStyle(
-            fontSize: 13,
-            color: PrimaryColors.blue,
-            fontWeight: FontWeight.bold
-          ),
-          text
-        ),
-      ),
-    );
-  }
-
   Widget _kaiPayButtonIcon(IconData icon, String text, {bool disabled = false}) {
     return IconButton(
       style: IconButton.styleFrom(
@@ -394,23 +370,6 @@ class Dashboard extends StatelessWidget {
           ),
         ]
       )
-    );
-  }
-
-  Widget _buildAdditionalServices() {
-    List<Map<String, dynamic>> services = [
-      {"icon": Icons.apartment_rounded, "label": "Hotel"},
-      {"icon": Icons.emoji_transportation_rounded, "label": "Kartu Multi Trip"},
-      {"icon": Icons.cases_rounded, "label": "KAI Logistik"},
-      {"icon": Icons.more_horiz_rounded, "label": "Show More"},
-    ];
-
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: services.map((service) => IconWithLabel(service['icon'], service['label'])).toList(),
-      ),
     );
   }
 
@@ -504,7 +463,7 @@ class Dashboard extends StatelessWidget {
                 ),
                 "Promo Terbaru"
               ),
-              _outlinedButton("Lihat Semua")
+              OutlineButtonRedirect("Lihat Semua", index: 3,)
             ],
           ),
         ),
@@ -582,7 +541,7 @@ class Dashboard extends StatelessWidget {
                 ),
                 "Tukar Railpoinm mu sekarang"
               ),
-              _outlinedButton("Lihat Semua")
+              OutlineButtonRedirect("Lihat Semua")
             ],
           ),
         ),
@@ -621,7 +580,7 @@ class Dashboard extends StatelessWidget {
                 ),
                 "Artikel Menarik"
               ),
-              _outlinedButton("Lihat Semua")
+              OutlineButtonRedirect("Lihat Semua")
             ],
           ),
         ),

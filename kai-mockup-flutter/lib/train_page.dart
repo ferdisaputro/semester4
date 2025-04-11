@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockup_ki/components/banner/title_inside.dart';
-import 'package:mockup_ki/components/build_service_icons.dart';
+import 'package:mockup_ki/components/services/build_service_icons.dart';
 
 class TrainPage extends StatelessWidget {
   const TrainPage({super.key});
