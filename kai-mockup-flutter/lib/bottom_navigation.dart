@@ -3,6 +3,8 @@ import 'package:logger/logger.dart';
 import 'package:mockup_ki/dashboard.dart';
 import 'package:mockup_ki/primary_colors.dart';
 import 'package:mockup_ki/train_page.dart';
+import 'package:mockup_ki/promo_screen.dart';
+
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -14,15 +16,13 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _pages = <Widget>[
+  static final List<Widget> _pages = <Widget>[
     Dashboard(),
     TrainPage(),
     Center(
       child: Text("Tiket Saya"),
     ),
-    Center(
-      child: Text("Promo"),
-    ),
+    PromoScreen(),
     Center(
       child: Text("Akun"),
     ),
