@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart' as hdr;
 
 class permissionPage extends StatelessWidget {
   const permissionPage({super.key});
@@ -18,13 +17,10 @@ class permissionPage extends StatelessWidget {
     // permissions.add("Super Admin - Semua Akses"); // Tambahan agar jumlahnya ganjil
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      
       body: SingleChildScrollView(
         child: Column(
           children: [
-            hdr.Header(), // Header
-            SizedBox(height: 40),
-
             // Statistik Permission
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
