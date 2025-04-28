@@ -1,63 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 // import 'NavBar.dart'as nav;
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Bagian Utama (Dua Kontainer: Kiri & Kanan)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // KONTENER KIRI (Profil & Staff Aktif)
-                  Expanded(
-                    flex: 1, // Lebih kecil dari kanan
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        _profileSection(), // Profil Pengguna
-                        SizedBox(height: 53),
-                        _statCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]), // Staff Aktif
-                      ],
+    return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(vertical: 20),
+      child: Column(
+        spacing: 20,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: StaggeredGridView.count(
+              crossAxisCount: 2, 
+              crossAxisSpacing: 15,
+              mainAxisSpacing: 15,
+              shrinkWrap: true,
+              staggeredTiles: [
+                StaggeredTile.fit(2),
+                StaggeredTile.fit(1),
+                StaggeredTile.fit(1),
+              ],  
+              children: [
+                Row(
+                  spacing: 15,
+                  children: [
+                    Expanded(
+                      child: _profileSection(),
                     ),
-                  ),
-
-                  SizedBox(width: 16), // Jarak antar kontainer
-
-                  // KONTENER KANAN (Teknisi, Stok Barang Menipis, Aktif)
-                  Expanded(
-                    flex: 1, // Lebih lebar dari kiri
-                    child: Column(
-                      children: [
-                        _statCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
-                        SizedBox(height: 12),
-                        _statCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
-                        SizedBox(height: 12),
-                        _statCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
-                      ],
+                    Expanded(
+                      child: Column(
+                        spacing: 15,
+                        children: [
+                          _statCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
+                          _statCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                _statCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
+                _statCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
+              ],
             ),
+          ),
 
-            SizedBox(height: 30),
-
-            // Statistik Peminjaman (Tetap Full Width)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              child: _loanStatCard(),
-            ),
-          ],
-        ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0),
+            child: _loanStatCard(),
+          ),
+        ],
       ),
     );
   }

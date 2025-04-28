@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:silab/assets/primary_colors.dart';
+import 'package:silab/providers/auth_provider.dart';
 import 'dashboard.dart';
 
-class LoginPage extends StatefulWidget {
+class Login extends StatefulWidget {
+  const Login({super.key});
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginState createState() => _LoginState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      backgroundColor: PrimaryColors.teal,
       body: LayoutBuilder(
         builder: (context, constraints) {
           double screenWidth = constraints.maxWidth;
-          double screenHeight = constraints.maxHeight;
           double paddingHorizontal = screenWidth * 0.08; // Responsif padding
-
           return Column(
             children: [
               Expanded(
@@ -79,10 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                           ),
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) => DashboardPage()),
-                            );
+                            context.read<AuthProvider>().login();
                           },
                           child: Text('Log In'),
                         ),

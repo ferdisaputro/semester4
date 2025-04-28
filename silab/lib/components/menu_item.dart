@@ -27,20 +27,26 @@ class MenuItem extends StatelessWidget {
             )
           ]
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(iconSrc),
-            Text(
-              text,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18
-              ),
-            )
-          ],
-        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 10
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(iconSrc),
+              Text(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              )
+            ],
+          ),
+        )
       ),
     );
   }
