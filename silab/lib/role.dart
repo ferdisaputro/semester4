@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart'as hdr;
-// import 'NavBar.dart'as nav;
 
 class rolePage extends StatelessWidget {
   const rolePage({super.key});
@@ -26,14 +24,10 @@ class rolePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      
       body: SingleChildScrollView(
         child: Column(
           children: [
-            hdr.Header(), // Tambahkan Header
-            // Expanded(child: nav.Navbar()),
-            SizedBox(height: 40),
-
             // Statistik Peminjaman (Tetap Full Width)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),

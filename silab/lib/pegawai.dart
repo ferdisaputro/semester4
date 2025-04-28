@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart' as hdr;
 
 class pegawaiPage extends StatelessWidget {
   pegawaiPage({super.key});
@@ -25,14 +24,9 @@ class pegawaiPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       body: SingleChildScrollView(
         child: Column(
           children: [
-            hdr.Header(), // Header
-            SizedBox(height: 40),
-
-            // Bagian Utama
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(

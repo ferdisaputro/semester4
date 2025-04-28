@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart' as hdr;
 
 class satuanPage extends StatelessWidget {
   const satuanPage({super.key});
@@ -7,13 +6,10 @@ class satuanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      
       body: SafeArea(
         child: Column(
           children: [
-            hdr.Header(),
-            SizedBox(height: 40),
-
             // Statistik Peminjaman
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),

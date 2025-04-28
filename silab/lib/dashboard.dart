@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'header.dart'as hdr;
 // import 'NavBar.dart'as nav;
 
 class DashboardPage extends StatelessWidget {
@@ -8,14 +7,10 @@ class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      
       body: SingleChildScrollView(
         child: Column(
           children: [
-            hdr.Header(), // Tambahkan Header
-            // Expanded(child: nav.Navbar()),
-            SizedBox(height: 40),
-
             // Bagian Utama (Dua Kontainer: Kiri & Kanan)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
