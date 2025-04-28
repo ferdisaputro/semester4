@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
       ),
       // home: LoginPage(),
-      // home: DashboardPage(),
+      home: DashboardPage(),
       // home: pegawaiPage(),
       // home: barangPage(),
       // home: satuanPage(),
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       // home: programstudiPage(),
       // home: labPage(),
       // home: jurusanPage(),
-      home: rolePage(),
+      // home: rolePage(),
     );
   }
 }
