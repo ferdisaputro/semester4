@@ -9,13 +9,13 @@ import 'package:silab/providers/equipment_loan/equipment_loan.dart';
 import 'package:silab/providers/laboratory.dart';
 import 'package:silab/providers/employee.dart';
 import 'package:silab/providers/item.dart';
+import 'package:silab/providers/login.dart';
 import 'package:silab/providers/permission.dart';
 import 'package:silab/providers/auth_provider.dart';
 import 'package:silab/providers/study_program.dart';
 import 'package:silab/providers/navigation_provider.dart';
 import 'package:silab/providers/role.dart';
 import 'package:silab/providers/unit.dart';
-import 'login.dart';
 
 void main() {
   runApp(
