@@ -97,19 +97,6 @@ class _MyAppState extends State<MyApp> {
         ),
         bottomNavigationBar: BottomNavigation()
       ),
-<<<<<<< HEAD
-      // home: LoginPage(),
-      home: DashboardPage(),
-      // home: pegawaiPage(),
-      // home: barangPage(),
-      // home: satuanPage(),
-      // home: permissionPage(),
-      // home: programstudiPage(),
-      // home: labPage(),
-      // home: jurusanPage(),
-      // home: rolePage(),
-=======
->>>>>>> 0d63fea3ca5877f9ea31ac3a36d7846e76a1599f
     );
   }
 }

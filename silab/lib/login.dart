@@ -14,7 +14,6 @@ class _LoginPageState extends State<LoginPage> {
       body: LayoutBuilder(
         builder: (context, constraints) {
           double screenWidth = constraints.maxWidth;
-          double screenHeight = constraints.maxHeight;
           double paddingHorizontal = screenWidth * 0.08; // Responsif padding
 
           return Column(

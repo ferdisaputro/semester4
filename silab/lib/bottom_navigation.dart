@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:silab/account.dart';
 import 'package:silab/assets/primary_colors.dart';
-import 'package:silab/barang.dart';
 import 'package:silab/components/menu_item.dart';
-import 'package:silab/dashboard.dart';
-import 'package:silab/jurusan.dart';
-import 'package:silab/laboratorium.dart';
-import 'package:silab/login.dart';
-import 'package:silab/pegawai.dart';
-import 'package:silab/permission.dart';
-import 'package:silab/program_studi.dart';
 import 'package:silab/providers/navigation_provider.dart';
-import 'package:silab/role.dart';
-import 'package:silab/satuan.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
