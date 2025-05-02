@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-import 'package:silab/assets/primary_colors.dart';
-=======
 import 'package:silab/config/primary_colors.dart';
->>>>>>> ferdi_android
-import 'package:silab/components/menu_item.dart';
+import 'package:silab/widgets/menu_item.dart';
 import 'package:silab/providers/navigation_provider.dart';
 
 class BottomNavigation extends StatefulWidget {
