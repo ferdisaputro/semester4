@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class rolePage extends StatelessWidget {
-  const rolePage({super.key});
+class Role extends StatelessWidget {
+  const Role({super.key});
 
   final List<String> roles = const [
     "Administrator",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class permissionPage extends StatelessWidget {
-  const permissionPage({super.key});
+class Permission extends StatelessWidget {
+  const Permission({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+<<<<<<< HEAD
 import 'package:silab/assets/primary_colors.dart';
+=======
+import 'package:silab/config/primary_colors.dart';
+>>>>>>> ferdi_android
 import 'package:silab/components/menu_item.dart';
 import 'package:silab/providers/navigation_provider.dart';
 
@@ -17,7 +21,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       context: context, 
       isScrollControlled: true,
       builder: (context) {
-        return Container(
+        return SizedBox(
           height: 500,
           child: GridView.count(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -27,13 +31,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
             crossAxisSpacing: 16,
             children: [
               MenuItem("assets/icons/people.png", "Pegawai", 3),
-              MenuItem("assets/icons/settings.png", "Role", 4),
-              MenuItem("assets/icons/permissions.png", "Permission", 5),
+              // MenuItem("assets/icons/settings.png", "Role", 4),
+              // MenuItem("assets/icons/permissions.png", "Permission", 5),
               MenuItem("assets/icons/department.png", "Jurusan", 6),
               MenuItem("assets/icons/study-programs.png", "Program Studi", 7),
-              MenuItem("assets/icons/unit.png", "Satuan", 8),
+              // MenuItem("assets/icons/unit.png", "Satuan", 8),
               MenuItem("assets/icons/items.png", "Barang", 9),
               MenuItem("assets/icons/labs.png", "Laboratorium", 10),
+              MenuItem("assets/icons/labs.png", "Peminjaman", 11),
+              // MenuItem("assets/icons/labs.png", "Login", 11),
             ],
           ),
         );
@@ -43,12 +49,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    final _navigationProvider = Provider.of<NavigationProvider>(context);
+    final navigationProvider = Provider.of<NavigationProvider>(context);
     return BottomNavigationBar(
       selectedIconTheme: IconThemeData(
         color: PrimaryColors.teal
       ),
-      currentIndex: _navigationProvider.selectedIndex == 0 || _navigationProvider.selectedIndex == 2?  _navigationProvider.selectedIndex : 1,
+      currentIndex: navigationProvider.selectedIndex == 0 || navigationProvider.selectedIndex == 2?  navigationProvider.selectedIndex : 1,
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.space_dashboard_rounded), label: 'Dashboard'),
         BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu', ),
@@ -59,7 +65,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           if (value == 1) {
             _showModalBottomSheet();
           } else {
-            _navigationProvider.setSelectedIndex(value);
+            navigationProvider.setSelectedIndex(value);
           }
         });
       },
