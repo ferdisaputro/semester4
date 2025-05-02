@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:silab/widgets/stat_card.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
-// import 'NavBar.dart'as nav;
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});

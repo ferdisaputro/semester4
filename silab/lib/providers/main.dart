@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:silab/account.dart';
+import 'package:silab/providers/account.dart';
 import 'package:silab/config/primary_colors.dart';
-import 'package:silab/bottom_navigation.dart';
-import 'package:silab/dashboard.dart';
-import 'package:silab/department.dart';
-import 'package:silab/equipment_loan.dart';
-import 'package:silab/laboratory.dart';
-import 'package:silab/employee.dart';
-import 'package:silab/item.dart';
-import 'package:silab/permission.dart';
+import 'package:silab/providers/bottom_navigation.dart';
+import 'package:silab/providers/dashboard.dart';
+import 'package:silab/providers/department.dart';
+import 'package:silab/providers/equipment_loan.dart';
+import 'package:silab/providers/laboratory.dart';
+import 'package:silab/providers/employee.dart';
+import 'package:silab/providers/item.dart';
+import 'package:silab/providers/permission.dart';
 import 'package:silab/providers/auth_provider.dart';
-import 'package:silab/study_program.dart';
+import 'package:silab/providers/study_program.dart';
 import 'package:silab/providers/navigation_provider.dart';
-import 'package:silab/role.dart';
-import 'package:silab/unit.dart';
+import 'package:silab/providers/role.dart';
+import 'package:silab/providers/unit.dart';
 import 'login.dart';
 
 void main() {
