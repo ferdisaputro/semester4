@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class EquipmentLoanCard extends StatelessWidget {
-  final Map<String, String> department;
-  const EquipmentLoanCard(this.department, {super.key});
+  // final Map<String, String> department;
+  final String name;
+  const EquipmentLoanCard(this.name, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class EquipmentLoanCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    department["kode"]!,
+                    '12312djhweui',
                     style: TextStyle(color: Colors.grey, fontSize: 14),
                   ),
                   Icon(Icons.more_horiz, color: Colors.black),
@@ -37,7 +38,7 @@ class EquipmentLoanCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                department["nama"]!,
+                name,
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const Divider(),
@@ -46,7 +47,7 @@ class EquipmentLoanCard extends StatelessWidget {
                 children: [
                   const Text("Ka. Jurusan", style: TextStyle(color: Colors.black54)),
                   Text(
-                    department["kaprodi"]!,
+                    'ryan dmasif',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -55,6 +56,6 @@ class EquipmentLoanCard extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }
