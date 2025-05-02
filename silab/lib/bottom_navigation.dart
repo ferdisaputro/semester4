@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:silab/assets/primary_colors.dart';
+import 'package:silab/config/primary_colors.dart';
 import 'package:silab/components/menu_item.dart';
 import 'package:silab/providers/navigation_provider.dart';
 
@@ -34,7 +34,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               // MenuItem("assets/icons/unit.png", "Satuan", 8),
               MenuItem("assets/icons/items.png", "Barang", 9),
               MenuItem("assets/icons/labs.png", "Laboratorium", 10),
-              MenuItem("assets/icons/labs.png", "Peminjaman", 10),
+              MenuItem("assets/icons/labs.png", "Peminjaman", 11),
               // MenuItem("assets/icons/labs.png", "Login", 11),
             ],
           ),

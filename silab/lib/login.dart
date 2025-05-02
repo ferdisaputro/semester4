@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:silab/assets/primary_colors.dart';
+import 'package:silab/config/primary_colors.dart';
 import 'package:silab/providers/auth_provider.dart';
-import 'dashboard.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

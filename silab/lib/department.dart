@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:silab/components/centered_stat_card.dart';
+import 'package:silab/components/centered_stat_text.dart';
 // import 'NavBar.dart'as nav;
 
 class Department extends StatelessWidget {
@@ -55,14 +57,19 @@ class Department extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
         child: Column(
           children: [
             // Statistik Peminjaman (Tetap Full Width)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: _SPStatCard(),
+              child: CenteredStatCard(
+                gradientColors: [Color(0xFFA0A0E8), Color(0xFF53CFC7)],
+                children: [
+                  CenteredStatText('40', 'Jurusan'),
+                ],
+              )
             ),
 
             SizedBox(height: 40),
@@ -146,52 +153,6 @@ class Department extends StatelessWidget {
         shape: CircleBorder(),
         child: Icon(Icons.add, color: Colors.white),
       ),
-    );
-  }
-
-
-  // Widget Statistik Program Studi
-  Widget _SPStatCard() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Color(0xFFA0A0E8), Color(0xFF53CFC7)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 5,
-            offset: Offset(2, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _SPStat("40", "Dosen"),
-        ],
-      ),
-    );
-  }
-
-  // Widget untuk Statistik Program Studi (angka & label)
-  Widget _SPStat(String number, String label) {
-    return Column(
-      children: [
-        Text(
-          number,
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(fontSize: 16, color: Colors.white70),
-        ),
-      ],
     );
   }
 

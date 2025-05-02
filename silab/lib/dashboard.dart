@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:silab/components/stat_card.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 // import 'NavBar.dart'as nav;
 
@@ -35,15 +36,15 @@ class DashboardPage extends StatelessWidget {
                       child: Column(
                         spacing: 15,
                         children: [
-                          _statCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
-                          _statCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
+                          StatCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
+                          StatCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
                         ],
                       ),
                     ),
                   ],
                 ),
-                _statCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
-                _statCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
+                StatCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
+                StatCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
               ],
             ),
           ),
@@ -88,44 +89,6 @@ class DashboardPage extends StatelessWidget {
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey[600]),
         ),
       ],
-    );
-  }
-
-
-  // Widget untuk Kartu Statistik (Staff Aktif, Teknisi, dll.)
-  Widget _statCard(String title, String value, List<Color> gradientColors) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: gradientColors,
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 5,
-            offset: Offset(2, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black54),
-          ),
-          SizedBox(height: 5),
-          Text(
-            value,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black87),
-          ),
-        ],
-      ),
     );
   }
 

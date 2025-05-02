@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:silab/account.dart';
-import 'package:silab/assets/primary_colors.dart';
+import 'package:silab/config/primary_colors.dart';
 import 'package:silab/bottom_navigation.dart';
 import 'package:silab/dashboard.dart';
 import 'package:silab/department.dart';
+import 'package:silab/equipment_loan.dart';
 import 'package:silab/laboratory.dart';
 import 'package:silab/employee.dart';
 import 'package:silab/item.dart';
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
     Unit(),
     Item(),
     Laboratory(),
+    EquipmentLoan()
     // Login(),
   ];
 
