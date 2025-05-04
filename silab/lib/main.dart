@@ -38,6 +38,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static final List<Widget> _pages = [
+    Login(),
     DashboardPage(),
     Placeholder(),
     Account(),
@@ -63,41 +64,41 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.teal,
         canvasColor: Colors.white
       ),
-      home: context.watch<AuthProvider>().isAuthenticated? 
+      home: context.watch<AuthProvider>().isAuthenticated?
         Scaffold(
           backgroundColor: Colors.grey[50],
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(70.0), // height of AppBar
-            child: Container(
-              decoration: BoxDecoration(
-                color: PrimaryColors.teal,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10,
-                    offset: Offset(0, 8),
-                  )
-                ]
-              ),
-              child: AppBar(
-                backgroundColor: Colors.transparent,
-                title: AnimatedAlign(
-                  alignment: context.watch<NavigationProvider>().selectedIndex == 0? Alignment.center : Alignment.centerLeft, 
-                  duration: Duration(milliseconds: 150),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Image.asset('assets/silab.png'),
-                  ),
-                )
-              ),
-            ),
-          ),
+          // appBar: PreferredSize(
+          //   preferredSize: Size.fromHeight(70.0), // height of AppBar
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       color: PrimaryColors.teal,
+          //       borderRadius: BorderRadius.only(
+          //         bottomLeft: Radius.circular(30),
+          //         bottomRight: Radius.circular(30),
+          //       ),
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.black26,
+          //           blurRadius: 10,
+          //           offset: Offset(0, 8),
+          //         )
+          //       ]
+          //     ),
+          //     child: AppBar(
+          //       backgroundColor: Colors.transparent,
+          //       title: AnimatedAlign(
+          //         alignment: context.watch<NavigationProvider>().selectedIndex == 0? Alignment.center : Alignment.center,
+          //         duration: Duration(milliseconds: 150),
+          //         child: Padding(
+          //           padding: EdgeInsets.symmetric(horizontal: 10),
+          //           child: Image.asset('assets/silab.png'),
+          //         ),
+          //       )
+          //     ),
+          //   ),
+          // ),
           body: _pages[navigationProvider.selectedIndex ],
-          bottomNavigationBar: BottomNavigation()
+          // bottomNavigationBar: BottomNavigation()
         ) : Login(),
     );
   }

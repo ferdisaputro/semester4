@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Expanded(
-                flex: 5,
+                flex: 8,
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(horizontal: paddingHorizontal, vertical: 20),
@@ -43,24 +43,28 @@ class _LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 10),
                         Center(
                           child: Image.asset(
                             'assets/silab.png',
-                            width: screenWidth * 0.35,
+                            width: screenWidth * 1,
                           ),
                         ),
                         SizedBox(height: 30),
-                        Center(
-                          child: Text(
-                            'Login',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        // Center(
+                        //   child: Text(
+                        //     'Login',
+                        //     style: TextStyle(
+                        //       fontSize: 30, // ukuran font lebih besar
+                        //       fontWeight: FontWeight.w600, // semi-bold
+                        //       fontFamily: 'Poppins', // ganti dengan font modern seperti Poppins
+                        //       color: Colors.black87,
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(height: 15),
-                        _buildInputField("Email", "Email"),
+                        _buildInputField("Email", ""),
                         SizedBox(height: 15),
-                        _buildInputField("Password", "Password", isPassword: true),
+                        _buildInputField("Password", "", isPassword: true),
                         SizedBox(height: 15),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -68,24 +72,37 @@ class _LoginState extends State<Login> {
                             Checkbox(value: false, onChanged: (value) {}),
                             Text(
                               "Remember me",
-                              style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey[800],
+                              ),
                             ),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 40),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
                             foregroundColor: Colors.white,
-                            minimumSize: Size(double.infinity, 50),
+                            minimumSize: Size(double.infinity, 80),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                           ),
                           onPressed: () {
                             context.read<AuthProvider>().login();
                           },
-                          child: Text('Log In'),
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Poppins',
+                            ),
+                          ),
                         ),
                       ],
+
                     ),
                   ),
                 ),
