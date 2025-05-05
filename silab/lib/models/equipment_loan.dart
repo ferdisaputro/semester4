@@ -1,3 +1,7 @@
+import 'package:silab/models/equipment_loan_detail.dart';
+import 'package:silab/models/staff_borrower.dart';
+import 'package:silab/models/staff_returner.dart';
+
 class EquipmentLoan {
   int id;
   String? code;
@@ -20,6 +24,9 @@ class EquipmentLoan {
   int? staffIdMentor;
   DateTime? createdAt;
   DateTime? updatedAt;
+  StaffBorrower? staffBorrower;
+  StaffReturner? staffReturner;
+  List<EquipmentLoanDetail>? equipmentLoanDetails;
 
   EquipmentLoan({
     required this.id,
@@ -43,6 +50,9 @@ class EquipmentLoan {
     this.staffIdMentor,
     this.createdAt,
     this.updatedAt,
+    this.staffBorrower,
+    this.staffReturner,
+    this.equipmentLoanDetails,
   });
 
   factory EquipmentLoan.fromJson(Map<String, dynamic> json) {
@@ -68,6 +78,13 @@ class EquipmentLoan {
       staffIdMentor: json['staff_id_mentor'],
       createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
       updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,
+      staffBorrower: json['staff_borrower'] != null ? StaffBorrower.fromJson(json['staff_borrower']) : null,
+      staffReturner: json['staff_returner'] != null ? StaffReturner.fromJson(json['staff_returner']) : null,
+      equipmentLoanDetails: json['loan_details'] != null
+          ? (json['loan_details'] as List)
+              .map((item) => EquipmentLoanDetail.fromJson(item))
+              .toList()
+          : null,
     );
   }
 
@@ -94,6 +111,11 @@ class EquipmentLoan {
       'staff_id_mentor': staffIdMentor,
       'created_at': createdAt?.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),
+      'staff_borrower': staffBorrower?.toString(),
+      'staff_returner': staffReturner?.toString(),
+      'loan_details': equipmentLoanDetails != null
+          ? equipmentLoanDetails!.map((item) => item.toJson()).toList()
+          : null,
     };
   }
 }

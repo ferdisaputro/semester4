@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:silab/models/equipment_loan.dart';
 
 class EquipmentLoanCard extends StatelessWidget {
-  // final Map<String, String> department;
-  final String name;
-  const EquipmentLoanCard(this.name, {super.key});
+  final EquipmentLoan equipmentLoan;
+  const EquipmentLoanCard(this.equipmentLoan, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class EquipmentLoanCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '12312djhweui',
+                    'Peminjam: ${equipmentLoan.isStaff == 1 ? 'Staff' : 'Mahasiswa'}',
                     style: TextStyle(color: Colors.grey, fontSize: 14),
                   ),
                   Icon(Icons.more_horiz, color: Colors.black),
@@ -38,20 +38,37 @@ class EquipmentLoanCard extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                name,
+                equipmentLoan.isStaff == 1 
+                    ? (equipmentLoan.staffBorrower?.user?.name ?? 'Unknown Staff') 
+                    : (equipmentLoan.name ?? 'Unknown Borrower'),
+                // ",",
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
                 children: [
-                  const Text("Ka. Jurusan", style: TextStyle(color: Colors.black54)),
-                  Text(
-                    'ryan dmasif',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Status", style: TextStyle(color: Colors.black54)),
+                      Text(
+                        equipmentLoan.status == 1 ? 'Dipinjam' : 'Dikembalikan',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Jumlah Peminjaman", style: TextStyle(color: Colors.black54)),
+                      Text(
+                        equipmentLoan.equipmentLoanDetails?.length.toString() ?? '0',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ],
-              ),
+              )
             ],
           ),
         ),
