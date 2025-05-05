@@ -5,6 +5,7 @@ import 'package:silab/config/primary_colors.dart';
 import 'package:silab/providers/bottom_navigation.dart';
 import 'package:silab/providers/dashboard.dart';
 import 'package:silab/providers/department.dart';
+import 'package:silab/providers/employee/employee_view.dart';
 import 'package:silab/providers/equipment_loan/equipment_loan.dart';
 import 'package:silab/providers/laboratory.dart';
 import 'package:silab/providers/employee.dart';
@@ -38,11 +39,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static final List<Widget> _pages = [
-    Login(),
+    // Login(),
     DashboardPage(),
     Placeholder(),
     Account(),
-    Employee(),
+    // Employee(),
+    EmployeeView(),
     Role(),
     Permission(),
     Department(),
