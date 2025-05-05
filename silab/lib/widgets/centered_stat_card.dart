@@ -25,8 +25,11 @@ class CenteredStatCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: GridView.count(
+        crossAxisCount: children.length,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        shrinkWrap: true,
         children: children,
       ),
     );

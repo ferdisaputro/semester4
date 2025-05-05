@@ -11,12 +11,22 @@ class CenteredStatText extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontSize: 30, 
+            fontWeight: 
+            FontWeight.bold, 
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
         ),
         SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(fontSize: 16, color: Colors.white70),
+          style: TextStyle(
+            fontSize: 16, 
+            color: Colors.white70
+          ),
+          textAlign: TextAlign.center,
         ),
       ],
     );
