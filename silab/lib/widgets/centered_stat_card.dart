@@ -25,12 +25,30 @@ class CenteredStatCard extends StatelessWidget {
           ),
         ],
       ),
-      child: GridView.count(
-        crossAxisCount: children.length,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        shrinkWrap: true,
-        children: children,
+      // child: GridView.count(
+      //   crossAxisCount: children.length,
+      //   crossAxisSpacing: 10,
+      //   mainAxisSpacing: 10,
+      //   shrinkWrap: true,
+      //   children: children,
+      // ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          int crossAxisCount = children.length;
+          double spacing = 10;
+          double itemWidth = (constraints.maxWidth - (spacing * (crossAxisCount - 1))) / crossAxisCount;
+
+          return Wrap(
+            spacing: spacing,
+            runSpacing: spacing,
+            children: children.map((child) {
+              return SizedBox(
+                width: itemWidth,
+                child: child,
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }
