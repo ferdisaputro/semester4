@@ -11,61 +11,50 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: AnimatedAlign(
-          alignment: Alignment.center,
-          duration: Duration(milliseconds: 150),
-          child: SizedBox(), // Kosong, karena title dikelola di dalam CustomAppBar
-        ),
-      ),
-      bottomNavigationBar: const BottomNavigation(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: StaggeredGridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 15,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                staggeredTiles: const [
-                  StaggeredTile.fit(2),
-                  StaggeredTile.fit(1),
-                  StaggeredTile.fit(1),
-                ],
-                children: [
-                  Row(
-                    children: [
-                      Expanded(child: _profileSection()),
-                      const SizedBox(width: 15),
-                      Expanded(
-                        child: Column(
-                          children: const [
-                            StatCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
-                            SizedBox(height: 15),
-                            StatCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
-                          ],
-                        ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: StaggeredGridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 15,
+              mainAxisSpacing: 15,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              staggeredTiles: const [
+                StaggeredTile.fit(2),
+                StaggeredTile.fit(1),
+                StaggeredTile.fit(1),
+              ],
+              children: [
+                Row(
+                  children: [
+                    Expanded(child: _profileSection()),
+                    const SizedBox(width: 15),
+                    Expanded(
+                      child: Column(
+                        children: const [
+                          StatCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
+                          SizedBox(height: 15),
+                          StatCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
+                        ],
                       ),
-                    ],
-                  ),
-                  const StatCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
-                  const StatCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const StatCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
+                const StatCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              child: _LoanStatCard(),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0),
+            child: _LoanStatCard(),
+          ),
+        ],
       ),
     );
   }
