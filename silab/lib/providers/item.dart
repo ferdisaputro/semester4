@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:silab/providers/AppBar.dart';
 import 'package:silab/providers/bottom_navigation.dart';
+// import 'NavBar.dart'as nav;
 
-class Permission extends StatelessWidget {
-  const Permission({super.key});
+class Item extends StatelessWidget {
+  const Item({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> roles = ["Pegawai", "Dosen", "Administrator", "Teknisi"];
-    List<String> actions = ["Edit", "Tambah", "Hapus"];
-    List<String> permissions = [];
-
-    for (var role in roles) {
-      for (var action in actions) {
-        permissions.add("$role - $action");
-      }
-    }
-    // permissions.add("Super Admin - Semua Akses"); // Tambahan agar jumlahnya ganjil
-
     return Scaffold(
       appBar: const CustomAppBar(
         backgroundColor: Colors.transparent,
@@ -32,11 +22,12 @@ class Permission extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const BottomNavigation(),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 30),
-            // Statistik Permission
+            // Statistik Peminjaman (Tetap Full Width)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: _SPStatCard(),
@@ -86,7 +77,7 @@ class Permission extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Data Permissions",
+                    "List Barang",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   IconButton(
@@ -99,10 +90,12 @@ class Permission extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            // Data Permission
+            // List Barang
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: _buildPermissionGrid(permissions),
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: _generateBarangList(),
+              ),
             ),
           ],
         ),
@@ -116,13 +109,86 @@ class Permission extends StatelessWidget {
     );
   }
 
-  // Widget Statistik
+  // Fungsi untuk membuat daftar barang
+  List<Widget> _generateBarangList() {
+    List<Map<String, String>> barang = [
+      {"kode": "BRNG-1-12", "nama": "Kertas F4", "jenis": "Bahan", "stok": "10"},
+      {"kode": "BRNG-1-13", "nama": "Bolpoin", "jenis": "Alat", "stok": "20"},
+      {"kode": "BRNG-1-14", "nama": "Penghapus", "jenis": "Alat", "stok": "15"},
+      {"kode": "BRNG-1-15", "nama": "Pensil", "jenis": "Alat", "stok": "25"},
+      {"kode": "BRNG-1-12", "nama": "Kertas F4", "jenis": "Bahan", "stok": "10"},
+      {"kode": "BRNG-1-13", "nama": "Bolpoin", "jenis": "Alat", "stok": "20"},
+      {"kode": "BRNG-1-14", "nama": "Penghapus", "jenis": "Alat", "stok": "15"},
+      {"kode": "BRNG-1-15", "nama": "Pensil", "jenis": "Alat", "stok": "25"},
+      {"kode": "BRNG-1-12", "nama": "Kertas F4", "jenis": "Bahan", "stok": "10"},
+      {"kode": "BRNG-1-13", "nama": "Bolpoin", "jenis": "Alat", "stok": "20"},
+      {"kode": "BRNG-1-14", "nama": "Penghapus", "jenis": "Alat", "stok": "15"},
+      {"kode": "BRNG-1-15", "nama": "Pensil", "jenis": "Alat", "stok": "25"},
+    ];
+    return barang.map((item) => _barangList(item)).toList();
+  }
+
+  // Widget untuk List Barang
+  Widget _barangList(Map<String, String> item) {
+    return Card(
+      margin: EdgeInsets.only(bottom: 12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(item["kode"]!, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black)),
+                Row(
+                  children: [
+                    Text("Stok ", style: TextStyle(fontSize: 14)),
+                    Text(item["stok"]!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 4),
+            Text(item["nama"]!, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 4),
+            Stack(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Jenis ",
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                      children: [
+                        TextSpan(
+                          text: item["jenis"],
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Icon(Icons.more_horiz, color: Colors.grey),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Widget Statistik Barang
   Widget _SPStatCard() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF61A5FA), Color(0xFF9696F9)],
+          colors: [Color(0xFF87BFFD), Color(0xFF53D0C9)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -138,13 +204,17 @@ class Permission extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _SPStat("40", "Total Program Studi"),
+          _SPStat("40", "Dosen"),
+          // _divider(),
+          _SPStat("40", "Bahan"),
+          // _divider(),
+          _SPStat("40", "Alat"),
         ],
       ),
     );
   }
 
-  // Widget untuk Statistik Program Studi (angka & label)
+  // Widget untuk Statistik Barang (angka & label)
   Widget _SPStat(String number, String label) {
     return Column(
       children: [
@@ -155,58 +225,9 @@ class Permission extends StatelessWidget {
         SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(fontSize: 16, color: Colors.white),
+          style: TextStyle(fontSize: 16, color: Colors.white70),
         ),
       ],
-    );
-  }
-
-  // Grid Data Permission
-  Widget _buildPermissionGrid(List<String> permissions) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Column(
-          children: [
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: permissions.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                return _buildPermissionCard(permissions[index]);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  // Widget Card Data Permission
-  Widget _buildPermissionCard(String title) {
-    return Card(
-      color: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text("..."),
-          ],
-        ),
-      ),
     );
   }
 }

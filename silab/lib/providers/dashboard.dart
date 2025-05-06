@@ -1,63 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:silab/widgets/stat_card.dart';
+import 'package:silab/providers/AppBar.dart'; // Import CustomAppBar
+import 'package:silab/providers/bottom_navigation.dart'; // Import BottomNavigation
+import 'package:silab/providers/navigation_provider.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        spacing: 20,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: StaggeredGridView.count(
-              crossAxisCount: 2, 
-              crossAxisSpacing: 15,
-              mainAxisSpacing: 15,
-              shrinkWrap: true,
-              staggeredTiles: [
-                StaggeredTile.fit(2),
-                StaggeredTile.fit(1),
-                StaggeredTile.fit(1),
-              ],  
-              children: [
-                Row(
-                  spacing: 15,
-                  children: [
-                    Expanded(
-                      child: _profileSection(),
-                    ),
-                    Expanded(
-                      child: Column(
-                        spacing: 15,
-                        children: [
-                          StatCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
-                          StatCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
-                        ],
+    return Scaffold(
+      appBar: const CustomAppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: AnimatedAlign(
+          alignment: Alignment.center,
+          duration: Duration(milliseconds: 150),
+          child: SizedBox(), // Kosong, karena title dikelola di dalam CustomAppBar
+        ),
+      ),
+      bottomNavigationBar: const BottomNavigation(),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: StaggeredGridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                staggeredTiles: const [
+                  StaggeredTile.fit(2),
+                  StaggeredTile.fit(1),
+                  StaggeredTile.fit(1),
+                ],
+                children: [
+                  Row(
+                    children: [
+                      Expanded(child: _profileSection()),
+                      const SizedBox(width: 15),
+                      Expanded(
+                        child: Column(
+                          children: const [
+                            StatCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
+                            SizedBox(height: 15),
+                            StatCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                StatCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
-                StatCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
-              ],
+                    ],
+                  ),
+                  const StatCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
+                  const StatCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
+                ],
+              ),
             ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0),
-            child: _loanStatCard(),
-          ),
-        ],
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 0),
+              child: _LoanStatCard(),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  // Widget Profil Pengguna
+  // Bagian Profil
   Widget _profileSection() {
     return Column(
       children: [
@@ -65,21 +78,19 @@ class DashboardPage extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25), // Membuat gambar lingkaran
-            border: Border.all(color: Colors.grey.shade300, width: 2), // Opsional: Tambahkan border
+            borderRadius: BorderRadius.circular(25),
+            border: Border.all(color: Colors.grey.shade300, width: 2),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: Image.asset(
               "assets/logo.png",
-              width: 50,
-              height: 50,
               fit: BoxFit.cover,
             ),
           ),
         ),
-        SizedBox(height: 8),
-        Text(
+        const SizedBox(height: 8),
+        const Text(
           "Halo Pengguna",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
@@ -90,66 +101,58 @@ class DashboardPage extends StatelessWidget {
       ],
     );
   }
+}
 
-  // Widget Statistik Peminjaman
-  Widget _loanStatCard() {
+// Statistik Peminjaman - dipisahkan untuk menjaga kode lebih bersih
+class _LoanStatCard extends StatelessWidget {
+  const _LoanStatCard();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xFF89BEFF), // Biru muda
-            Color(0xFF4FD1C5), // Turquoise
-          ],
+        gradient: const LinearGradient(
+          colors: [Color(0xFF89BEFF), Color(0xFF4FD1C5)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        // borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 5,
-            offset: Offset(2, 2),
-          ),
+        boxShadow: const [
+          BoxShadow(color: Colors.black26, blurRadius: 5, offset: Offset(2, 2)),
         ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _loanStat("30", "Peminjaman"),
-          // _divider(),
-          _loanStat("2", "Sedang Dipinjam"),
-          // _divider(),
-          _loanStat("12", "Kembali"),
+        children: const [
+          _LoanStat("30", "Peminjaman"),
+          _LoanStat("2", "Sedang Dipinjam"),
+          _LoanStat("12", "Kembali"),
         ],
       ),
     );
   }
+}
 
-  // Widget untuk Statistik Peminjaman (angka & label)
-  Widget _loanStat(String number, String label) {
+class _LoanStat extends StatelessWidget {
+  final String number;
+  final String label;
+
+  const _LoanStat(this.number, this.label);
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
           number,
-          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
+          style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(fontSize: 16, color: Colors.white),
+          style: const TextStyle(fontSize: 16, color: Colors.white),
         ),
       ],
     );
   }
-
-  // Widget garis pemisah antar elemen di Statistik Peminjaman
-  // Widget _divider() {
-  //   return Container(
-  //     height: 30,
-  //     width: 2,
-  //     color: Colors.white.withOpacity(0.5),
-  //     margin: EdgeInsets.symmetric(horizontal: 8),
-  //   );
-  // }
 }
