@@ -10,7 +10,7 @@ class EquipmentLoanView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
         child: EquipmentLoanContent(),
       ),
       floatingActionButton: FloatingActionButton(
