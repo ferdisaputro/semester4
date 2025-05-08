@@ -4,8 +4,8 @@ import 'package:silab/providers/auth_provider.dart';
 import 'package:silab/widgets/stat_card.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
+class DashboardView extends StatelessWidget {
+  const DashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {

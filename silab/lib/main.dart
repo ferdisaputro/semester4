@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:silab/providers/account.dart';
 import 'package:silab/config/primary_colors.dart';
 import 'package:silab/providers/bottom_navigation.dart';
-import 'package:silab/providers/dashboard.dart';
+import 'package:silab/providers/dashboard/dashboard_view.dart';
 import 'package:silab/providers/department.dart';
 import 'package:silab/providers/equipment_loan/equipment_loan_view.dart';
 import 'package:silab/providers/employee/employee_view.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static final List<Widget> _pages = [
-    DashboardPage(),
+    DashboardView(),
     Placeholder(),
     Account(),
     Employee(),
