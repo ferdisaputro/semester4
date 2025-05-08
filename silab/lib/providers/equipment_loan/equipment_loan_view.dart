@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:silab/providers/equipment_loan/equipment_loan_content.dart';
-import 'package:silab/widgets/centered_stat_card.dart';
-import 'package:silab/widgets/centered_stat_text.dart';
 
 class EquipmentLoanView extends StatelessWidget {
   const EquipmentLoanView({super.key});

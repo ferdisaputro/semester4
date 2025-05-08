@@ -1,10 +1,11 @@
 // employee_card.dart
 import 'package:flutter/material.dart';
 import 'package:silab/models/employee.dart';
+import 'package:silab/models/staff.dart';
 
 class EmployeeCard extends StatelessWidget {
-  final Employee employee;
-  const EmployeeCard({super.key, required this.employee});
+  final Staff staff;
+  const EmployeeCard({super.key, required this.staff});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,8 @@ class EmployeeCard extends StatelessWidget {
           backgroundColor: Colors.black54,
           child: Icon(Icons.person, color: Colors.white),
         ),
-        title: Text(employee.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(employee.staffStatus ?? "Tidak diketahui"),
+        title: Text(staff.user?.name ?? 'Unknown', style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(staff.staffStatus?.staffStatus ?? 'Unknown'),
         trailing: const Icon(Icons.more_horiz),
       ),
     );

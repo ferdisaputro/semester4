@@ -10,7 +10,7 @@ import 'package:silab/providers/employee/employee_view.dart';
 import 'package:silab/providers/laboratory.dart';
 import 'package:silab/providers/employee.dart';
 import 'package:silab/providers/item/item_view.dart';
-import 'package:silab/providers/login.dart';
+import 'package:silab/providers/login/login_view.dart';
 import 'package:silab/providers/permission.dart';
 import 'package:silab/providers/auth_provider.dart';
 import 'package:silab/providers/study_program.dart';
@@ -102,7 +102,7 @@ class _MyAppState extends State<MyApp> {
           ),
           body: _pages[navigationProvider.selectedIndex ],
           bottomNavigationBar: BottomNavigation()
-        ) : Login(),
+        ) : LoginView(),
     );
   }
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:silab/providers/auth_provider.dart';
 import 'package:silab/widgets/stat_card.dart';
-import 'package:silab/providers/AppBar.dart'; // Import CustomAppBar
-import 'package:silab/providers/bottom_navigation.dart'; // Import BottomNavigation
-import 'package:silab/providers/navigation_provider.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -31,7 +29,7 @@ class DashboardPage extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Expanded(child: _profileSection()),
+                    Expanded(child: _profileSection(context)),
                     const SizedBox(width: 15),
                     Expanded(
                       child: Column(
@@ -60,7 +58,7 @@ class DashboardPage extends StatelessWidget {
   }
 
   // Bagian Profil
-  Widget _profileSection() {
+  Widget _profileSection(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -79,12 +77,12 @@ class DashboardPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        const Text(
-          "Halo Pengguna",
+        Text(
+          "Halo ${context.watch<AuthProvider>().user.name}",
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
         ),
         Text(
-          "user@gmail.com",
+          context.watch<AuthProvider>().user.email,
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.grey[600]),
         ),
       ],
