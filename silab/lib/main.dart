@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:silab/providers/Laboratory/laboratory_view.dart';
 import 'package:silab/providers/account.dart';
 import 'package:silab/config/primary_colors.dart';
 import 'package:silab/providers/bottom_navigation.dart';
@@ -13,9 +14,9 @@ import 'package:silab/providers/item/item_view.dart';
 import 'package:silab/providers/login/login_view.dart';
 import 'package:silab/providers/permission.dart';
 import 'package:silab/providers/auth_provider.dart';
-import 'package:silab/providers/study_program.dart';
 import 'package:silab/providers/navigation_provider.dart';
 import 'package:silab/providers/role.dart';
+import 'package:silab/providers/study_program/study_program_view.dart';
 import 'package:silab/providers/unit.dart';
 
 void main() {
@@ -49,7 +50,7 @@ class _MyAppState extends State<MyApp> {
     Role(),
     Permission(),
     Department(),
-    StudyProgram(),
+    StudyProgramView(),
     Unit(),
     ItemView(),
     Laboratory(),
