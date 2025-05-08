@@ -12,9 +12,9 @@ import 'package:silab/providers/item.dart';
 import 'package:silab/providers/login.dart';
 import 'package:silab/providers/permission.dart';
 import 'package:silab/providers/auth_provider.dart';
-import 'package:silab/providers/study_program.dart';
 import 'package:silab/providers/navigation_provider.dart';
 import 'package:silab/providers/role.dart';
+import 'package:silab/providers/study_program/study_program_view.dart';
 import 'package:silab/providers/unit.dart';
 
 void main() {
@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     Role(),
     Permission(),
     Department(),
-    StudyProgram(),
+    StudyProgramView(),
     Unit(),
     Item(),
     Laboratory(),
