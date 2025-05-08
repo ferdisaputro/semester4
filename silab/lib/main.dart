@@ -8,7 +8,6 @@ import 'package:silab/providers/dashboard/dashboard_view.dart';
 import 'package:silab/providers/department.dart';
 import 'package:silab/providers/equipment_loan/equipment_loan_view.dart';
 import 'package:silab/providers/employee/employee_view.dart';
-import 'package:silab/providers/laboratory.dart';
 import 'package:silab/providers/employee.dart';
 import 'package:silab/providers/item/item_view.dart';
 import 'package:silab/providers/login/login_view.dart';
@@ -53,7 +52,7 @@ class _MyAppState extends State<MyApp> {
     StudyProgramView(),
     Unit(),
     ItemView(),
-    Laboratory(),
+    LaboratoryView(),
     EquipmentLoanView()
     // Login(),
   ];
