@@ -51,7 +51,7 @@ class StudyProgramCard extends StatelessWidget {
               children: [
                 _buildInfoRow("Jurusan", jurusan),
                 _buildInfoRow("Ketua Prodi", ketua),
-              ],
+          ],
             ),
           ],
         ),
