@@ -18,19 +18,23 @@ class EquipmentLoanService {
     }
   }
 
+//  / ✅ Mengambil detail peminjaman berdasarkan ID
+  Future<EquipmentLoan> fetchEquipmentLoanById(int id) async {
+    final url = Uri.parse("${AppConfig.baseUrl}/api/peminjaman/$id");
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final equipmentLoanData = data['equipment_loan'];
+      return EquipmentLoan.fromJson(equipmentLoanData);
+    } else {
+      throw Exception('Gagal memuat data peminjaman dengan ID $id');
+    }
+  }
+}
 
 
-
-
-
-
-
-
-
-
-
-
-  // Future<List<EquipmentLoan>> getEquipmentLoans() async {
+ // Future<List<EquipmentLoan>> getEquipmentLoans() async {
   //   final url = Uri.parse('http://192.168.239.66:8000/api/peminjaman');
   //   final response = await http.get(url);
 
@@ -41,4 +45,3 @@ class EquipmentLoanService {
   //     throw Exception('Failed to load equipment loans');
   //   }
   // }
-}

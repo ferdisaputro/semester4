@@ -1,12 +1,12 @@
 
 class EquipmentLoanDetail {
   final int id;
-  final int qty;
+  final int? qty;
   final int? returnQty;
   final String? description;
   final int? status; // 1 => complete, 2 => incomplete
   final int equipmentLoanId;
-  final int labItemId;
+  final int? labItemId;
   final int? stockCardId;
   final int? stockCardIdReturn;
   final DateTime createdAt;

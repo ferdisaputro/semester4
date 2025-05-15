@@ -57,7 +57,7 @@ class EquipmentLoan {
 
   factory EquipmentLoan.fromJson(Map<String, dynamic> json) {
     return EquipmentLoan(
-      id: json['id'],
+      id: json['id'] ?? 0,
       code: json['code'],
       staffId: json['staff_id'],
       isStaff: json['is_staff'],
@@ -71,7 +71,7 @@ class EquipmentLoan {
       returnerName: json['returner_name'],
       returnerNim: json['returner_nim'],
       returnerGroupClass: json['returner_group_class'],
-      status: json['status'],
+      status: json['status'] ?? 0,
       laboratoryId: json['laboratory_id'],
       labMemberIdBorrow: json['lab_member_id_borrow'],
       labMemberIdReturn: json['lab_member_id_return'],
@@ -84,7 +84,7 @@ class EquipmentLoan {
           ? (json['loan_details'] as List)
               .map((item) => EquipmentLoanDetail.fromJson(item))
               .toList()
-          : null,
+          : [],
     );
   }
 
@@ -113,9 +113,7 @@ class EquipmentLoan {
       'updated_at': updatedAt?.toIso8601String(),
       'staff_borrower': staffBorrower?.toString(),
       'staff_returner': staffReturner?.toString(),
-      'loan_details': equipmentLoanDetails != null
-          ? equipmentLoanDetails!.map((item) => item.toJson()).toList()
-          : null,
+      'loan_details': equipmentLoanDetails?.map((item) => item.toJson()).toList() ?? [],
     };
   }
 }

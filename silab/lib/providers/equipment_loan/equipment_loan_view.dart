@@ -13,12 +13,6 @@ class EquipmentLoanView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         child: EquipmentLoanContent(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.teal,
-        shape: CircleBorder(),
-        child: Icon(Icons.add, color: Colors.white),
-      ),
     );
   }
 }

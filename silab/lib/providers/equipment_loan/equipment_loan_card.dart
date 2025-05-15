@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:silab/models/equipment_loan.dart';
+import 'package:silab/providers/equipment_loan/equipment_loan_return.dart';
 
 class EquipmentLoanCard extends StatelessWidget {
   final EquipmentLoan equipmentLoan;
@@ -30,10 +31,43 @@ class EquipmentLoanCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Peminjam: ${equipmentLoan.isStaff == 1 ? 'Staff' : 'Mahasiswa'}',
-                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                  'Peminjam: ${equipmentLoan.isStaff == 1 ? 'Staff' : 'Mahasiswa'}',
+                  style: TextStyle(color: Colors.grey, fontSize: 14),
                   ),
-                  Icon(Icons.more_horiz, color: Colors.black),
+                  if (equipmentLoan.status == 1)
+                  GestureDetector(
+                    onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Pengembalian Pinjaman'),
+                        actions: [
+                        TextButton(
+                          onPressed: () {
+                          Navigator.of(context).pop();
+                          },
+                          child: Text('Tutup'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                          Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => EquipmentLoanReturn(
+                              loanId: equipmentLoan.id,
+                            ),
+                          ),
+                          );
+                          },
+                          child: Text('Kembalikan Pinjaman'),
+                        ),
+                        ],
+                      );
+                      },
+                    );
+                    },
+                    child: Icon(Icons.more_horiz, color: Colors.black),
+                  ),
                 ],
               ),
               const SizedBox(height: 4),

@@ -1,3 +1,3 @@
 class AppConfig {
-  static String baseUrl = "https://50ee-103-165-213-66.ngrok-free.app";
+  static String baseUrl = "https://647a-103-189-201-34.ngrok-free.app";
 }
