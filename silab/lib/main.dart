@@ -4,12 +4,13 @@ import 'package:silab/providers/Laboratory/laboratory_view.dart';
 import 'package:silab/providers/account.dart';
 import 'package:silab/config/primary_colors.dart';
 import 'package:silab/providers/bottom_navigation.dart';
-import 'package:silab/providers/dashboard.dart';
+import 'package:silab/providers/dashboard/dashboard_view.dart';
 import 'package:silab/providers/department.dart';
 import 'package:silab/providers/equipment_loan/equipment_loan_view.dart';
+import 'package:silab/providers/employee/employee_view.dart';
 import 'package:silab/providers/employee.dart';
-import 'package:silab/providers/item.dart';
-import 'package:silab/providers/login.dart';
+import 'package:silab/providers/item/item_view.dart';
+import 'package:silab/providers/login/login_view.dart';
 import 'package:silab/providers/permission.dart';
 import 'package:silab/providers/auth_provider.dart';
 import 'package:silab/providers/navigation_provider.dart';
@@ -38,16 +39,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static final List<Widget> _pages = [
-    DashboardPage(),
+    DashboardView(),
     Placeholder(),
     Account(),
     Employee(),
+    // Login(),
+    // Employee(),
+    EmployeeView(),
     Role(),
     Permission(),
     Department(),
     StudyProgramView(),
     Unit(),
-    Item(),
+    ItemView(),
     LaboratoryView(),
     EquipmentLoanView()
     // Login(),
@@ -98,7 +102,7 @@ class _MyAppState extends State<MyApp> {
           ),
           body: _pages[navigationProvider.selectedIndex ],
           bottomNavigationBar: BottomNavigation()
-        ) : Login(),
+        ) : LoginView(),
     );
   }
 }

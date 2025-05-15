@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:silab/providers/AppBar.dart';
+import 'package:silab/providers/bottom_navigation.dart';
 import 'package:silab/widgets/centered_stat_card.dart';
 import 'package:silab/widgets/centered_stat_text.dart';
 
@@ -56,10 +58,24 @@ class Department extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: AnimatedAlign(
+          alignment: Alignment.center, // nilai default
+          duration: Duration(milliseconds: 150),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Image(image: AssetImage('assets/silab.png')),
+          ),
+        ),
+      ),
+      bottomNavigationBar: const BottomNavigation(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 20, bottom: 20),
         child: Column(
           children: [
+            SizedBox(height: 30),
             // Statistik Peminjaman (Tetap Full Width)
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),

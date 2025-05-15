@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:silab/providers/AppBar.dart';
+import 'package:silab/providers/bottom_navigation.dart';
+
 
 class Employee extends StatelessWidget {
   Employee({super.key});
@@ -24,11 +27,26 @@ class Employee extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: AnimatedAlign(
+          alignment: Alignment.center, // nilai default
+          duration: Duration(milliseconds: 150),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Image(image: AssetImage('assets/silab.png')),
+          ),
+        ),
+      ),
+      bottomNavigationBar: const BottomNavigation(),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 30),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
+
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

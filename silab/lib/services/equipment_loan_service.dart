@@ -11,7 +11,6 @@ class EquipmentLoanService {
     // print(response.statusCode.toString());
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
-      print(data.toString());
       return data.map((item) => EquipmentLoan.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load equipment loans');

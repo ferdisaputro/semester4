@@ -21,6 +21,14 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
     getEquipmentLoans();
   }
 
+  void getEquipmentLoans() async {
+    print("Fetching equipment loans...");
+    final equipmentLoans = await EquipmentLoanService().fetchEquipmentLoans();
+    setState(() {
+      _equipmentLoanList = equipmentLoans;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +37,10 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
         CenteredStatCard(
           gradientColors: [Color(0xFFA0A0E8), Color(0xFF53CFC7)],
           children: [
-            CenteredStatText(_equipmentLoanList.length.toString(), 'Peminjaman'),
+            CenteredStatText(
+              _equipmentLoanList.length.toString(), 
+              'Peminjaman'
+            ),
             CenteredStatText(
               _equipmentLoanList.where((loan) => loan.status == 1).length.toString(),
               'Sedang Dipinjam',
@@ -94,7 +105,11 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
             ),
 
             // List Jurusan
-            ListView.builder(
+            _equipmentLoanList.isEmpty?
+            Center(
+              child: CircularProgressIndicator(),
+            )
+            : ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: _equipmentLoanList.length,
@@ -106,13 +121,5 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
         ),
       ],
     );
-  }
-
-  void getEquipmentLoans() async {
-    print("Fetching equipment loans...");
-    final equipmentLoans = await EquipmentLoanService().fetchEquipmentLoans();
-    setState(() {
-      _equipmentLoanList = equipmentLoans;
-    });
   }
 }
