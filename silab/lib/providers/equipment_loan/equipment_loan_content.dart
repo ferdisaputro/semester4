@@ -37,7 +37,10 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
         CenteredStatCard(
           gradientColors: [Color(0xFFA0A0E8), Color(0xFF53CFC7)],
           children: [
-            CenteredStatText(_equipmentLoanList.length.toString(), 'Peminjaman'),
+            CenteredStatText(
+              _equipmentLoanList.length.toString(), 
+              'Peminjaman'
+            ),
             CenteredStatText(
               _equipmentLoanList.where((loan) => loan.status == 1).length.toString(),
               'Sedang Dipinjam',

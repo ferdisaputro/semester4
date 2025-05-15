@@ -1,11 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:silab/models/dashboard_data.dart';
 import 'package:silab/providers/auth_provider.dart';
+import 'package:silab/providers/equipment_loan/equipment_loan_card.dart';
+import 'package:silab/services/dashboard_service.dart';
+import 'package:silab/widgets/centered_stat_card.dart';
+import 'package:silab/widgets/centered_stat_text.dart';
 import 'package:silab/widgets/stat_card.dart';
 import 'package:staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class DashboardView extends StatelessWidget {
+class DashboardView extends StatefulWidget {
   const DashboardView({super.key});
+
+  @override
+  State<DashboardView> createState() => _DashboardViewState();
+}
+
+class _DashboardViewState extends State<DashboardView> {
+  DashboardData? _dashboardData;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _getDashboardData();
+  }
+
+  void _getDashboardData() async {
+    DashboardData dashboardData = await DashboardDataService().fetchDashboardData();
+    setState(() {
+      _dashboardData = dashboardData;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +59,61 @@ class DashboardView extends StatelessWidget {
                     const SizedBox(width: 15),
                     Expanded(
                       child: Column(
-                        children: const [
-                          StatCard("Stok Barang Menipis", "40", [Color(0xFF54CEC7), Color(0xFFA39EE9)]),
+                        children: [
+                          StatCard(
+                            "Peminjaman", 
+                            _dashboardData?.equipmentLoans?.length.toString() ?? "0", 
+                            [Color(0xFF54CEC7), Color(0xFFA39EE9)]
+                          ),
                           SizedBox(height: 15),
-                          StatCard("Teknisi", "40", [Color(0xFF989BEA), Color(0xFF52B6D4)]),
+                          StatCard(
+                            "Teknisi", 
+                            "40", 
+                            [Color(0xFF989BEA), Color(0xFF52B6D4)]
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                const StatCard("Staff Aktif", "40", [Color(0xFF91CEE1), Color(0xFF59CA9F)]),
-                const StatCard("Aktif", "40", [Color(0xFF52D1C5), Color(0xFFC4BFBA)]),
+                StatCard(
+                  "Staff Aktif",
+                  _dashboardData?.totalStaffActive?.toString() ?? "0",
+                  [Color(0xFF91CEE1), Color(0xFF59CA9F)],
+                ),
+                StatCard(
+                  "Staff Non Aktif", 
+                  _dashboardData?.totalStaffNonactive?.toString() ?? '0', 
+                  [Color(0xFF52D1C5), Color(0xFFC4BFBA)]
+                ),
               ],
             ),
           ),
           const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0),
-            child: _LoanStatCard(),
-          ),
+          _loanStatCard(),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: _dashboardData?.equipmentLoans != null && _dashboardData!.equipmentLoans!.isNotEmpty
+                ? _dashboardData!.equipmentLoans!.where((loan) => loan.status == 1).isEmpty
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _dashboardData!.equipmentLoans!.where((loan) => loan.status == 1).length,
+                        itemBuilder: (context, index) {
+                          return _dashboardData!.equipmentLoans!
+                              .where((loan) => loan.status == 1)
+                              .map((equipmentLoan) => EquipmentLoanCard(equipmentLoan))
+                              .toList()[index];
+                        },
+                      )
+                : const Center(
+                    child: Text('Tidak ada peminjaman'),
+                  ),
+          )
         ],
       ),
     );
@@ -88,16 +150,9 @@ class DashboardView extends StatelessWidget {
       ],
     );
   }
-}
 
-// Statistik Peminjaman - dipisahkan untuk menjaga kode lebih bersih
-class _LoanStatCard extends StatelessWidget {
-  const _LoanStatCard();
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _loanStatCard() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFF89BEFF), Color(0xFF4FD1C5)],
@@ -108,38 +163,39 @@ class _LoanStatCard extends StatelessWidget {
           BoxShadow(color: Colors.black26, blurRadius: 5, offset: Offset(2, 2)),
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const [
-          _LoanStat("30", "Peminjaman"),
-          _LoanStat("2", "Sedang Dipinjam"),
-          _LoanStat("12", "Kembali"),
+      child: CenteredStatCard(
+        gradientColors: [Colors.transparent, Colors.transparent],
+        withShadow: false,
+        children: [
+          if (_dashboardData == null || _dashboardData!.equipmentLoans == null)
+            ...[
+              CenteredStatText("0", "Peminjaman Hari Ini"),
+              CenteredStatText("0", 'Sedang Dipinjam'),
+              CenteredStatText("0", 'Kembali'),
+            ]
+          else
+            ...[
+              CenteredStatText(
+                _dashboardData!.equipmentLoans!
+                  .where((loan) => loan.createdAt?.toLocal().toString().split(' ')[0] == DateTime.now().toLocal().toString().split(' ')[0])
+                  .length
+                  .toString(),
+                "Peminjaman (Hari Ini)",
+              ),
+              CenteredStatText(
+                _dashboardData!.equipmentLoans!.length.toString(),
+                'Sedang Dipinjam',
+              ),
+              CenteredStatText(
+                _dashboardData!.equipmentLoans!
+                  .where((loan) => loan.status == 2 && loan.createdAt?.toLocal().toString().split(' ')[0] == DateTime.now().toLocal().toString().split(' ')[0])
+                  .length
+                  .toString(),
+                'Kembali (Hari Ini)',
+              ),
+            ],
         ],
       ),
-    );
-  }
-}
-
-class _LoanStat extends StatelessWidget {
-  final String number;
-  final String label;
-
-  const _LoanStat(this.number, this.label);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          number,
-          style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 16, color: Colors.white),
-        ),
-      ],
     );
   }
 }

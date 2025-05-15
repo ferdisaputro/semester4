@@ -17,7 +17,6 @@ class CenteredStatText extends StatelessWidget {
             FontWeight.bold, 
             color: Colors.white,
           ),
-          softWrap: false,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 4),
@@ -28,7 +27,6 @@ class CenteredStatText extends StatelessWidget {
             color: Colors.white70
           ),
           textAlign: TextAlign.center,
-          softWrap: false,
         ),
       ],
     );

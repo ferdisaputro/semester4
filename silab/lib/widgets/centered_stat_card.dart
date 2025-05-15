@@ -4,7 +4,8 @@ import 'package:silab/widgets/centered_stat_text.dart';
 class CenteredStatCard extends StatelessWidget {
   final List<CenteredStatText> children;
   final List<Color> gradientColors;
-  const CenteredStatCard({super.key, required this.children, required this.gradientColors});
+  final bool withShadow;
+  const CenteredStatCard({super.key, required this.children, required this.gradientColors, this.withShadow = true});
 
   @override
   Widget build(BuildContext context) {
@@ -17,21 +18,14 @@ class CenteredStatCard extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
+        boxShadow: withShadow? [
           BoxShadow(
             color: Colors.black26,
             blurRadius: 5,
             offset: Offset(2, 2),
           ),
-        ],
+        ] : [],
       ),
-      // child: GridView.count(
-      //   crossAxisCount: children.length,
-      //   crossAxisSpacing: 10,
-      //   mainAxisSpacing: 10,
-      //   shrinkWrap: true,
-      //   children: children,
-      // ),
       child: LayoutBuilder(
         builder: (context, constraints) {
           int crossAxisCount = children.length;

@@ -2,6 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:silab/models/user.dart';
 
 class AuthProvider with ChangeNotifier {
+  // bool _isAuthenticated = false;
+  // String? _token = null;
+  // User? _user = null;
   bool _isAuthenticated = false;
   String? _token = null;
   User? _user = null;
