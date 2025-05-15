@@ -33,7 +33,7 @@ class LoginFormState extends State<LoginForm> {
           context.read<AuthProvider>().login(result);
         }
       } catch (e) {
-        setState(() {
+          setState(() {
           _errorMessage = "Terjadi error. Coba lagi.";
         });
       }

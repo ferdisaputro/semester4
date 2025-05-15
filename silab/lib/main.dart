@@ -4,7 +4,8 @@ import 'package:silab/providers/account.dart';
 import 'package:silab/config/primary_colors.dart';
 import 'package:silab/providers/bottom_navigation.dart';
 import 'package:silab/providers/dashboard.dart';
-import 'package:silab/providers/department.dart';
+// import 'package:silab/providers/department/department_view.dart';
+import 'package:silab/providers/department/department_view.dart';
 import 'package:silab/providers/equipment_loan/equipment_loan_view.dart';
 import 'package:silab/providers/employee/employee_view.dart';
 import 'package:silab/providers/laboratory.dart';
@@ -48,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     EmployeeView(),
     Role(),
     Permission(),
-    Department(),
+    DepartmentView(),
     StudyProgram(),
     Unit(),
     ItemView(),
