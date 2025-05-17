@@ -1,3 +1,5 @@
+import 'package:silab/models/item.dart';
+
 class LabItem {
   final int id;
   final String? code;
@@ -8,6 +10,7 @@ class LabItem {
   final int isActive;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final Item? item;
 
   LabItem({
     required this.id,
@@ -19,6 +22,7 @@ class LabItem {
     required this.isActive,
     required this.createdAt,
     required this.updatedAt,
+    this.item,
   });
 
   factory LabItem.fromJson(Map<String, dynamic> json) {
@@ -32,6 +36,7 @@ class LabItem {
       isActive: json['is_active'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
+      item: json['item'] != null ? Item.fromJson(json['item']) : null,
     );
   }
 

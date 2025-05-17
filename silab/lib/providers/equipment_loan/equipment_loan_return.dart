@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'equipment_loan_employee.dart'; // Import konten pegawai
-import 'equipment_loan_student.dart';  // Import konten mahasiswa
+import 'equipment_loan_confirmation.dart'; // Import konten pegawai & mahasiswa
 
 class EquipmentLoanReturn extends StatefulWidget {
   final int loanId;
@@ -15,19 +14,13 @@ class _EquipmentLoanReturnState extends State<EquipmentLoanReturn> {
   String selectedRole = 'pegawai'; // default
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70.0),
+        preferredSize: const Size.fromHeight(70.0),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.teal,
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -44,7 +37,7 @@ class _EquipmentLoanReturnState extends State<EquipmentLoanReturn> {
           child: AppBar(
             backgroundColor: Colors.transparent,
             title: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Image.asset('assets/silab.png', height: 40),
             ),
           ),
@@ -52,7 +45,7 @@ class _EquipmentLoanReturnState extends State<EquipmentLoanReturn> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           // Pilihan Pegawai & Mahasiswa
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -67,9 +60,9 @@ class _EquipmentLoanReturnState extends State<EquipmentLoanReturn> {
                     selectedRole = 'pegawai';
                   });
                 },
-                child: Text('Pegawai'),
+                child: const Text('Pegawai'),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: selectedRole == 'mahasiswa' ? Colors.teal : Colors.grey[300],
@@ -80,18 +73,15 @@ class _EquipmentLoanReturnState extends State<EquipmentLoanReturn> {
                     selectedRole = 'mahasiswa';
                   });
                 },
-                child: Text('Mahasiswa'),
+                child: const Text('Mahasiswa'),
               ),
             ],
           ),
-          // SizedBox(height: 20),
           // Konten yang berubah
-         Expanded(
-            child: Center(
-              child: selectedRole == 'pegawai'
-                  ? EquipmentLoanEmployeePage(loanId: widget.loanId)
-                  // : EquipmentLoanStudentPage(loanId: widget.loanId),
-                  : Placeholder(),
+          Expanded(
+            child: EquipmentLoanConfirmation(
+              loanId: widget.loanId,
+              selectedRole: selectedRole,
             ),
           ),
         ],

@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:silab/config/app_config.dart';
 import 'package:silab/models/equipment_loan.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class EquipmentLoanService {
   Future<List<EquipmentLoan>> fetchEquipmentLoans() async {
@@ -22,7 +24,7 @@ class EquipmentLoanService {
     final url = Uri.parse("${AppConfig.baseUrl}/api/peminjaman/$id");
     final response = await http.get(url);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200) { 
       final data = jsonDecode(response.body);
       final equipmentLoanData = data['equipment_loan'];
       return EquipmentLoan.fromJson(equipmentLoanData);
@@ -30,6 +32,38 @@ class EquipmentLoanService {
       throw Exception('Gagal memuat data peminjaman dengan ID $id');
     }
   }
+
+  Future<void> submitReturnData(Map<String, dynamic> data, int id) async {
+  final url = Uri.parse('${AppConfig.baseUrl}/api/peminjaman/$id');
+
+  print('Mengirim payload ke $url: $data');
+
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token');
+
+  if (token == null) {
+    throw Exception("Token tidak ditemukan. Harap login kembali.");
+  }
+
+  final response = await http.put(
+    url,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token',
+    },
+    body: jsonEncode(data),
+  );
+
+  print('Response status: ${response.statusCode}');
+  print('Response body: ${response.body}');
+
+  if (response.statusCode != 200) {
+    throw Exception(
+      'Gagal submit pengembalian: ${response.statusCode} ${response.body}',
+    );
+  }
+}
+
 }
 
 

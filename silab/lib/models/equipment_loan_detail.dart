@@ -1,4 +1,6 @@
 
+import 'package:silab/models/lab_item.dart';
+
 class EquipmentLoanDetail {
   final int id;
   final int? qty;
@@ -11,6 +13,7 @@ class EquipmentLoanDetail {
   final int? stockCardIdReturn;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final LabItem? labItem;
 
   EquipmentLoanDetail({
     required this.id,
@@ -24,6 +27,7 @@ class EquipmentLoanDetail {
     this.stockCardIdReturn,
     required this.createdAt,
     required this.updatedAt,
+    this.labItem,
   });
 
   factory EquipmentLoanDetail.fromJson(Map<String, dynamic> json) {
@@ -39,6 +43,9 @@ class EquipmentLoanDetail {
       stockCardIdReturn: json['stock_card_id_return'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
+      labItem: json['lab_item'] != null
+          ? LabItem.fromJson(json['lab_item'])
+          : null,
     );
   }
 
@@ -55,6 +62,7 @@ class EquipmentLoanDetail {
       'stock_card_id_return': stockCardIdReturn,
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
+      'lab_item': labItem?.toJson(),
     };
   }
 }

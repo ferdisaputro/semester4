@@ -1,6 +1,7 @@
 import 'package:silab/models/equipment_loan_detail.dart';
 import 'package:silab/models/staff_borrower.dart';
 import 'package:silab/models/staff_returner.dart';
+import 'package:silab/models/user.dart';
 
 class EquipmentLoan {
   int id;
@@ -27,6 +28,7 @@ class EquipmentLoan {
   StaffBorrower? staffBorrower;
   StaffReturner? staffReturner;
   List<EquipmentLoanDetail>? equipmentLoanDetails;
+  User? user;
 
   EquipmentLoan({
     required this.id,
@@ -53,6 +55,7 @@ class EquipmentLoan {
     this.staffBorrower,
     this.staffReturner,
     this.equipmentLoanDetails,
+    this.user,
   });
 
   factory EquipmentLoan.fromJson(Map<String, dynamic> json) {
@@ -114,6 +117,7 @@ class EquipmentLoan {
       'staff_borrower': staffBorrower?.toString(),
       'staff_returner': staffReturner?.toString(),
       'loan_details': equipmentLoanDetails?.map((item) => item.toJson()).toList() ?? [],
+      
     };
   }
 }
