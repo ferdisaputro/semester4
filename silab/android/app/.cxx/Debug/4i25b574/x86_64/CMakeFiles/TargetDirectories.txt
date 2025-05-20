@@ -1,0 +1,2 @@
+C:/Tugas git/semester4 -master/silab/android/app/.cxx/Debug/4i25b574/x86_64/CMakeFiles/edit_cache.dir
+C:/Tugas git/semester4 -master/silab/android/app/.cxx/Debug/4i25b574/x86_64/CMakeFiles/rebuild_cache.dir

@@ -5,7 +5,7 @@ import 'package:silab/providers/account.dart';
 import 'package:silab/config/primary_colors.dart';
 import 'package:silab/providers/bottom_navigation.dart';
 import 'package:silab/providers/dashboard/dashboard_view.dart';
-import 'package:silab/providers/department.dart';
+import 'package:silab/providers/department/department.dart';
 import 'package:silab/providers/equipment_loan/equipment_loan_view.dart';
 import 'package:silab/providers/employee/employee_view.dart';
 import 'package:silab/providers/employee.dart';
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
     DashboardView(),
     Placeholder(),
     Account(),
-    Employee(),
+    // Employee(),
     // Login(),
     // Employee(),
     EmployeeView(),
