@@ -26,21 +26,8 @@ class _DepartmentViewState extends State<DepartmentView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CustomAppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: AnimatedAlign(
-          alignment: Alignment.center,
-          duration: Duration(milliseconds: 150),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Image(image: AssetImage('assets/silab.png')),
-          ),
-        ),
-      ),
-      bottomNavigationBar: const BottomNavigation(),
-      body: SingleChildScrollView(
+    int _departmentCount = 0;
+    return SingleChildScrollView(
         padding: const EdgeInsets.only(top: 20, bottom: 20),
         child: Column(
           children: [
@@ -49,11 +36,26 @@ class _DepartmentViewState extends State<DepartmentView> {
             // Statistik Jurusan
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CenteredStatCard(
-                gradientColors: const [Color(0xFFA0A0E8), Color(0xFF53CFC7)],
-                children: const [
-                  CenteredStatText('40', 'Jurusan'),
-                ],
+              child: FutureBuilder<List<Department>>(
+                future: futureDepartments,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Text('Tidak ada data jurusan.');
+                  }
+
+                  final jurusanList = snapshot.data!;
+
+                  return CenteredStatCard(
+                    gradientColors: const [Color(0xFFA0A0E8), Color(0xFF53CFC7)],
+                    children: [
+                      CenteredStatText(jurusanList.length.toString(), 'Jurusan'),
+                    ],
+                  );
+                },
               ),
             ),
 
@@ -109,46 +111,38 @@ class _DepartmentViewState extends State<DepartmentView> {
               ),
             ),
 
-            const SizedBox(height: 20),
-
             // FutureBuilder untuk load data
-            FutureBuilder<List<Department>>(
-              future: futureDepartments,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Text('Tidak ada data jurusan.');
-                }
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: FutureBuilder<List<Department>>(
+                future: futureDepartments,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Text('Tidak ada data jurusan.');
+                  }
 
-                final jurusanList = snapshot.data!;
+                  final jurusanList = snapshot.data!;
 
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: jurusanList.length,
-                  itemBuilder: (context, index) {
-                    final jurusan = jurusanList[index];
-                    return DepartmentCard(jurusan: jurusan);
-                  },
-                );
-              },
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: jurusanList.length,
+                    itemBuilder: (context, index) {
+                      final jurusan = jurusanList[index];
+                      return DepartmentCard(jurusan: jurusan);
+                    },
+                  );
+                },
+              ),
             ),
 
             const SizedBox(height: 20),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Tambahkan aksi tambah jurusan
-        },
-        backgroundColor: Colors.teal,
-        shape: const CircleBorder(),
-        child: const Icon(Icons.add, color: Colors.white),
-      ),
-    );
+      );
   }
 }
