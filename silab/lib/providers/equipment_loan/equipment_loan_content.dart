@@ -107,7 +107,7 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
             // List Jurusan
             _equipmentLoanList.isEmpty?
             Center(
-              child: CircularProgressIndicator(),
+              child: _equipmentLoanList.length == 0? Text('Tidak ada data') : CircularProgressIndicator(),
             )
             : ListView.builder(
               shrinkWrap: true,

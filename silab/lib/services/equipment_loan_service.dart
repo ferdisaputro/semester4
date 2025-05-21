@@ -25,9 +25,11 @@ class EquipmentLoanService {
     final response = await http.get(url);
 
     if (response.statusCode == 200) { 
-      final data = jsonDecode(response.body);
-      final equipmentLoanData = data['equipment_loan'];
-      return EquipmentLoan.fromJson(equipmentLoanData);
+      final equipmentLoanData = jsonDecode(response.body);
+      final equipmentLoan = EquipmentLoan.fromJson(equipmentLoanData);
+      print(equipmentLoan.equipmentLoanDetails?.first.labItem?.item?.id);
+      // print(equipmentLoanData['loan_details'][0]['lab_item']['item']);
+      return equipmentLoan;
     } else {
       throw Exception('Gagal memuat data peminjaman dengan ID $id');
     }

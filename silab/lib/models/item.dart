@@ -5,10 +5,10 @@ import 'package:silab/models/unit.dart';
 class Item {
   final int id;
   final String itemName;
-  final String itemCode;
+  final String? itemCode;
   final int quantity;
-  final String specification;
-  final String description;
+  final String? specification;
+  final String? description;
   final int? userId;
   final int? unitId;
   final int? itemTypeId;

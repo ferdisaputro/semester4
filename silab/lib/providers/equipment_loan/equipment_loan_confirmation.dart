@@ -41,6 +41,7 @@ class _EquipmentLoanConfirmationState extends State<EquipmentLoanConfirmation> {
   Future<void> loadStaffList() async {
     try {
       final fetchedStaff = await EmployeeService().fetchStaff();
+
       setState(() {
         staffList = fetchedStaff;
       });
@@ -324,7 +325,8 @@ class _EquipmentLoanConfirmationState extends State<EquipmentLoanConfirmation> {
             Text("Barang $index", style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
             TextFormField(
-              initialValue: item.labItem?.item?.itemName ?? 'null',
+              initialValue: item.labItem?.item?.itemName,
+              // initialValue: 'null',
               readOnly: true,
               decoration: const InputDecoration(labelText: "Barang", border: OutlineInputBorder()),
             ),

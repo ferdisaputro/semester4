@@ -19,7 +19,7 @@ class ItemCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(item.itemCode, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black)),
+                Text(item.itemCode?? 'N/A', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.black)),
                 Row(
                   children: [
                     Text("Stok ", style: TextStyle(fontSize: 14)),
