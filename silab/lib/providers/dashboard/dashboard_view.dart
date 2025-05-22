@@ -18,6 +18,7 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardViewState extends State<DashboardView> {
   DashboardData? _dashboardData;
+  bool _isNotLoading = false;
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _DashboardViewState extends State<DashboardView> {
     DashboardData dashboardData = await DashboardDataService().fetchDashboardData();
     setState(() {
       _dashboardData = dashboardData;
+      _isNotLoading = true;
     });
   }
 
@@ -94,25 +96,25 @@ class _DashboardViewState extends State<DashboardView> {
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: _dashboardData?.equipmentLoans != null && _dashboardData!.equipmentLoans!.isNotEmpty
-                ? _dashboardData!.equipmentLoans!.where((loan) => loan.status == 1).isEmpty
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _dashboardData!.equipmentLoans!.where((loan) => loan.status == 1).length,
-                        itemBuilder: (context, index) {
-                          return _dashboardData!.equipmentLoans!
-                              .where((loan) => loan.status == 1)
-                              .map((equipmentLoan) => EquipmentLoanCard(equipmentLoan))
-                              .toList()[index];
-                        },
-                      )
-                : const Center(
-                    child: Text('Tidak ada peminjaman'),
-                  ),
+            child: _isNotLoading
+              ? _dashboardData!.equipmentLoans!.where((loan) => loan.status == 1).isEmpty
+                ? const Center(
+                    child: Text("Tidak ada peminjaman"),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: _dashboardData!.equipmentLoans!.where((loan) => loan.status == 1).length,
+                    itemBuilder: (context, index) {
+                      return _dashboardData!.equipmentLoans!
+                          .where((loan) => loan.status == 1)
+                          .map((equipmentLoan) => EquipmentLoanCard(equipmentLoan))
+                          .toList()[index];
+                    },
+                  )
+              : Center(
+                child: CircularProgressIndicator(),
+              )
           )
         ],
       ),
@@ -183,7 +185,7 @@ class _DashboardViewState extends State<DashboardView> {
                 "Peminjaman (Hari Ini)",
               ),
               CenteredStatText(
-                _dashboardData!.equipmentLoans!.length.toString(),
+                _dashboardData!.equipmentLoans!.where((loan) => loan.status == 1).length.toString(),
                 'Sedang Dipinjam',
               ),
               CenteredStatText(

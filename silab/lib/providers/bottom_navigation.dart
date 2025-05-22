@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:silab/config/primary_colors.dart';
+import 'package:silab/providers/auth_provider.dart';
 import 'package:silab/widgets/menu_item.dart';
 import 'package:silab/providers/navigation_provider.dart';
 
@@ -26,15 +27,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
             mainAxisSpacing: 16,
             crossAxisSpacing: 16,
             children: [
-              MenuItem("assets/icons/people.png", "Pegawai", 4),
-              // MenuItem("assets/icons/settings.png", "Role", 5),
-              // MenuItem("assets/icons/permissions.png", "Permission", 6),
-              MenuItem("assets/icons/department.png", "Jurusan", 7),
-              MenuItem("assets/icons/study-programs.png", "Program Studi", 8),
-              // MenuItem("assets/icons/unit.png", "Satuan", 9),
-              MenuItem("assets/icons/items.png", "Barang", 10),
-              MenuItem("assets/icons/labs.png", "Laboratorium", 11),
-              MenuItem("assets/icons/labs.png", "Peminjaman", 12),
+              MenuItem("assets/icons/people.png", "Pegawai", 3),
+              // MenuItem("assets/icons/settings.png", "Role", 4),
+              // MenuItem("assets/icons/permissions.png", "Permission", 5),
+              MenuItem("assets/icons/department.png", "Jurusan", 6),
+              MenuItem("assets/icons/study-programs.png", "Program Studi", 7),
+              // MenuItem("assets/icons/unit.png", "Satuan", 8),
+              MenuItem("assets/icons/items.png", "Barang", 9),
+              MenuItem("assets/icons/labs.png", "Laboratorium", 10),
+              MenuItem("assets/icons/labs.png", "Peminjaman", 11),
             ],
           ),
         );
@@ -53,12 +54,36 @@ class _BottomNavigationState extends State<BottomNavigation> {
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.space_dashboard_rounded), label: 'Dashboard'),
         BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu', ),
-        BottomNavigationBarItem(icon: Icon(Icons.account_circle_rounded), label: 'Akun'),
+        BottomNavigationBarItem(icon: Icon(Icons.logout_outlined), label: 'Logout'),
       ],
       onTap: (value) {
         setState(() {
           if (value == 1) {
             _showModalBottomSheet();
+          } else if (value == 2) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Logout aplikasi?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Batal'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.read<AuthProvider>().logout();
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Logout'),
+                    ),
+                  ],
+                );
+              },
+            );
           } else {
             navigationProvider.setSelectedIndex(value);
           }

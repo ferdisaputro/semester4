@@ -14,6 +14,7 @@ class EquipmentLoanContent extends StatefulWidget {
 
 class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
   List<EquipmentLoan> _equipmentLoanList = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -26,6 +27,7 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
     final equipmentLoans = await EquipmentLoanService().fetchEquipmentLoans();
     setState(() {
       _equipmentLoanList = equipmentLoans;
+      _isLoading = false;
     });
   }
 
@@ -105,18 +107,21 @@ class _EquipmentLoanContentState extends State<EquipmentLoanContent> {
             ),
 
             // List Jurusan
-            _equipmentLoanList.isEmpty?
-            Center(
-              child: _equipmentLoanList.length == 0? Text('Tidak ada data') : CircularProgressIndicator(),
-            )
-            : ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: _equipmentLoanList.length,
-              itemBuilder: (context, index) {
-                return _equipmentLoanList.map((equipmentLoan) => EquipmentLoanCard(equipmentLoan)).toList()[index];
-              },
-            ),
+            _isLoading?
+              Center(
+                child: CircularProgressIndicator(),
+              )
+            : _equipmentLoanList.length > 0? 
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _equipmentLoanList.length,
+                itemBuilder: (context, index) {
+                  return _equipmentLoanList.map((equipmentLoan) => EquipmentLoanCard(equipmentLoan)).toList()[index];
+                },
+              ) : Center(
+                child: Text('Tidak ada data'),
+              )
           ],
         ),
       ],

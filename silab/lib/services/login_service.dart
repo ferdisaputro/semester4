@@ -20,13 +20,12 @@ class LoginService {
         // ✅ Simpan token di SharedPreferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('authToken', responseData['token']);
-
         return responseData;
-      } else {
-        throw Exception('Failed to login: ${response.reasonPhrase}');
+      } else {;
+        return {'status': response.statusCode};
       }
     } catch (e) {
-      throw Exception('Error during login: ${e.toString()}');
+      throw Exception(e.toString());
     }
   }
 }

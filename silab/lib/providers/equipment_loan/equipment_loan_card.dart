@@ -45,19 +45,20 @@ class EquipmentLoanCard extends StatelessWidget {
                         actions: [
                         TextButton(
                           onPressed: () {
-                          Navigator.of(context).pop();
+                            Navigator.of(context).pop();
                           },
                           child: Text('Tutup'),
                         ),
                         TextButton(
                           onPressed: () {
-                          Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => EquipmentLoanReturn(
-                              loanId: equipmentLoan.id,
-                            ),
-                          ),
-                          );
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => EquipmentLoanReturn(
+                                  loanId: equipmentLoan.id,
+                                ),
+                              ),
+                            );
+                            Navigator.of(context).pop();
                           },
                           child: Text('Kembalikan Pinjaman'),
                         ),

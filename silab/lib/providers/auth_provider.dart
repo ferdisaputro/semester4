@@ -29,6 +29,8 @@ class AuthProvider with ChangeNotifier {
 
   void logout() {
     _isAuthenticated = false;
+    _token = null;
+    _user = null;
     notifyListeners();
   }
 }

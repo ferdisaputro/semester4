@@ -21,21 +21,15 @@ class LoginFormState extends State<LoginForm> {
     });
 
     if (_emailController.text.isNotEmpty || _passwordController.text.isNotEmpty) {
-      try {
-        dynamic result = await LoginService().login(_emailController.text, _passwordController.text);
-        print(result.toString());
-        if (result == null) {
-          // If login fails, set the error message
-          setState(() {
-            _errorMessage = "Invalid username or password.";
-          });
-        } else {
-          context.read<AuthProvider>().login(result);
-        }
-      } catch (e) {
-          setState(() {
-          _errorMessage = "Terjadi error. Coba lagi.";
+      dynamic result = await LoginService().login(_emailController.text, _passwordController.text);
+      print(result);
+      if (result['status'] == 401) {
+        // If login fails, set the error message
+        setState(() {
+          _errorMessage = "Invalid username or password.";
         });
+      } else {
+        context.read<AuthProvider>().login(result);
       }
     } else {
       setState(() {
