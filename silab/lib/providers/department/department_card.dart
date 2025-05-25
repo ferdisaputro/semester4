@@ -11,9 +11,14 @@ class DepartmentCard extends StatelessWidget {
     return Card(
       color: Colors.white,
       child: ListTile(
-        title: Text(jurusan.department),
+        title: Text(
+          style: TextStyle(
+            fontWeight: FontWeight.bold
+          ),
+          jurusan.department
+        ),
         subtitle: Text('Code: ${jurusan.code ?? '-'}'),
-        trailing: Text('User ID: ${jurusan.userId ?? '-'}'),
+        // trailing: Text('User ID: ${jurusan.userId ?? '-'}'),
       ),
     );
   }
