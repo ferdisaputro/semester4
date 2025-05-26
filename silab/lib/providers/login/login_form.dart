@@ -22,7 +22,6 @@ class LoginFormState extends State<LoginForm> {
 
     if (_emailController.text.isNotEmpty || _passwordController.text.isNotEmpty) {
       dynamic result = await LoginService().login(_emailController.text, _passwordController.text);
-      print(result);
       if (result['status'] == 401) {
         // If login fails, set the error message
         setState(() {

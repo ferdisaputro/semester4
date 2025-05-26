@@ -10,8 +10,6 @@ class DashboardDataService {
     final response = await http.get(url);
     if (response.statusCode == 200) {
       dynamic data = jsonDecode(response.body);
-      // print(data.toString());
-      // return [];
       return DashboardData.fromJson(data);
     } else {
       throw Exception('Failed to load equipment loans');

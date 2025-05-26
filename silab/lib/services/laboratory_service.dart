@@ -7,10 +7,8 @@ class LaboratoryService {
   Future<List<Laboratory>> fetchLaboratory() async {
     final url = Uri.parse("${AppConfig.baseUrl}/api/laboratorium");
     final response = await http.get(url);
-    // print(response.statusCode.toString());
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
-      print(data.toString());
       return data.map((item) => Laboratory.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load equipment loans');

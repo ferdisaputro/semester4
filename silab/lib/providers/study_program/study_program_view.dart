@@ -22,7 +22,6 @@ class _StudyProgramViewState extends State<StudyProgramView> {
   }
 
   Future<void> getStudyProgram() async {
-    debugPrint("Fetching Study Program...");
     final studyPrograms = await StudyProgramService().fetchStudyProgram();
     setState(() {
       _studyProgramList = studyPrograms;

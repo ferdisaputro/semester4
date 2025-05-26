@@ -46,7 +46,6 @@ class _EquipmentLoanConfirmationState extends State<EquipmentLoanConfirmation> {
         staffList = fetchedStaff;
       });
     } catch (e) {
-      print("Gagal memuat pegawai: $e");
     }
   }
 
@@ -223,7 +222,6 @@ class _EquipmentLoanConfirmationState extends State<EquipmentLoanConfirmation> {
       );
       Navigator.pop(context,true ); // kembali ke halaman sebelumnya
     } catch (e) {
-      print('Gagal menyimpan pengembalian: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Gagal menyimpan data: $e')),
       );

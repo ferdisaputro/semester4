@@ -22,16 +22,12 @@ class _ItemViewState extends State<ItemView> {
   }
 
   void getItems() async {
-    print("Fetching items...");
-
     List<Item> items = await ItemService().getItems();
     if (items.isNotEmpty) {
-      print("Items fetched successfully: ${items.length} items found.");
       setState(() {
         _items = items;
       });
     } else {
-      print("No items found.");
     }
   }
 

@@ -10,7 +10,6 @@ class EquipmentLoanService {
   Future<List<EquipmentLoan>> fetchEquipmentLoans() async {
     final url = Uri.parse("${AppConfig.baseUrl}/api/peminjaman");
     final response = await http.get(url);
-    // print(response.statusCode.toString());
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
       return data.map((item) => EquipmentLoan.fromJson(item)).toList();
@@ -27,8 +26,6 @@ class EquipmentLoanService {
     if (response.statusCode == 200) { 
       final equipmentLoanData = jsonDecode(response.body);
       final equipmentLoan = EquipmentLoan.fromJson(equipmentLoanData);
-      print(equipmentLoan.equipmentLoanDetails?.first.labItem?.item?.id);
-      // print(equipmentLoanData['loan_details'][0]['lab_item']['item']);
       return equipmentLoan;
     } else {
       throw Exception('Gagal memuat data peminjaman dengan ID $id');
@@ -37,8 +34,6 @@ class EquipmentLoanService {
 
   Future<void> submitReturnData(Map<String, dynamic> data, int id) async {
   final url = Uri.parse('${AppConfig.baseUrl}/api/peminjaman/$id');
-
-  print('Mengirim payload ke $url: $data');
 
   final prefs = await SharedPreferences.getInstance();
   final token = prefs.getString('token');
@@ -55,9 +50,6 @@ class EquipmentLoanService {
     },
     body: jsonEncode(data),
   );
-
-  print('Response status: ${response.statusCode}');
-  print('Response body: ${response.body}');
 
   if (response.statusCode != 200) {
     throw Exception(

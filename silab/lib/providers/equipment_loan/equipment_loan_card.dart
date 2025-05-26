@@ -58,7 +58,7 @@ class EquipmentLoanCard extends StatelessWidget {
                                 ),
                               ),
                             );
-                            Navigator.of(context).pop();
+                            // Navigator.of(context).pop();
                           },
                           child: Text('Kembalikan Pinjaman'),
                         ),
